@@ -20,6 +20,9 @@ module.controller('WidgetSalesAveragePurchaseSizeCtrl', ($scope, $q, $filter, Im
     pickedDate = moment.utc(timestamp)
     if pickedDate <= todayUTC then "lte #{pickedDate.format('YYYY-MM-DD')}" else pickedDate.format('YYYY-MM-DD')
 
+  imgSrc = (name) ->
+    ImpacAssets.get(_.camelCase(name + 'ArrowUp'))
+
   # Unique identifier for the chart object in the DOM
   $scope.chartId = ->
     "averagePurchaseSizeChart-#{w.id}"
@@ -31,6 +34,27 @@ module.controller('WidgetSalesAveragePurchaseSizeCtrl', ($scope, $q, $filter, Im
   # Sets the transactions list resources type and displays it
   onClickBar = (event) ->
     $scope.isChartDisplayed = false
+
+  rendererCallback = (chart) ->
+    console.log("#{imgSrc('green')}")
+    point = chart.series[3].yData[0]
+    text = "<h4> Insight Data </h4>
+            <br>
+            <h5> Previous Month: #{point} </h5>"
+    # Make the positioning dynamic
+    chart.renderer.image("#{imgSrc('green')}", 30, 400, 20, 20)
+      .attr(
+        zIndex: 7
+      ).add()
+    chart.renderer.label(text, 20, 400, 'rect')
+      .css(color: '#E2E2E2')
+      .attr(
+        fill: 'rgba(0, 0, 0, 0.75)'
+        padding: 8
+        r: 5
+        zIndex: 6
+      ).add()
+    return
 
   # == Directive Events Callbacks =====================================================================
   $scope.onButtonBack = () ->
@@ -70,7 +94,7 @@ module.controller('WidgetSalesAveragePurchaseSizeCtrl', ($scope, $q, $filter, Im
         rangeSelector:
           selected: 5
 
-    $scope.chart.render(w.content.chart, options)
+    $scope.chart.render(w.content.chart, options, rendererCallback)
 
     # Add events callbacks to chart object
     $scope.chart.addSeriesEvent('click', onClickBar)

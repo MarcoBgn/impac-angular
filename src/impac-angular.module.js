@@ -60,6 +60,7 @@ angular.module('impac.components.widgets',
     'impac.components.widgets.accounts-detailed-classifications',
     'impac.components.widgets.accounts-ratios',
     'impac.components.widgets.accounts-cash-balance',
+    'impac.components.widgets.accounts-live-balance',
     'impac.components.widgets.hr-employee-details',
     'impac.components.widgets.hr-employees-list',
     'impac.components.widgets.hr-leaves-balance',
@@ -93,14 +94,15 @@ angular.module('impac.components.widgets',
     'impac.components.widgets.sales-top-opportunities',
     'impac.components.widgets.sales-top-customers',
     'impac.components.widgets.sales-new-vs-existing-customers',
-    'impac.components.widgets.sales-average-purchase-size',
-    'impac.components.widgets.sales-average-visit',
-    'impac.components.widgets.sales-customers-engagement'
+    // 'impac.components.widgets.sales-average-purchase-size',
+    // 'impac.components.widgets.sales-average-visit',
+    // 'impac.components.widgets.sales-customers-engagement'
   ]
 );
 angular.module('impac.components.widgets-settings',
   [
     'impac.components.widgets-settings.account',
+    'impac.components.widgets-settings.bolt-account',
     'impac.components.widgets-settings.accounts-list',
     'impac.components.widgets-settings.accounting-behaviour',
     'impac.components.widgets-settings.chart-filters',
