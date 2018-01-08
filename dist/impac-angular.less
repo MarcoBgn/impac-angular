@@ -3027,12 +3027,6 @@ chart-threshold {
   }
 }
 
-.analytics .time-period-info {
-  font-size: 11px;
-  color: #ABC4C6;
-  text-transform: uppercase;
-}
-
 .analytics .widget-item .top-line .top-buttons {
   text-align: right;
   margin-top: -1px;
@@ -3070,6 +3064,12 @@ chart-threshold {
       }
     }
   }
+}
+
+.analytics .time-period-info {
+  font-size: 11px;
+  color: #ABC4C6;
+  text-transform: uppercase;
 }
 
 .analytics .widget-item .content.accounts-accounting-values {
@@ -3116,6 +3116,29 @@ chart-threshold {
 
   .price {
     .center-bold(0px);
+  }
+}
+
+.analytics .widget-item .content.accounts-balance-sheet {
+  .tall-widget();
+  .widget-lines-container {
+    .scrollable(scroll);
+    max-height: 490px;
+    @media (max-width: @screen-xs-max) {
+      .row.widget-line {
+        &:not(:last-child) { border-bottom: dashed 1px @impac-widget-borders-color; }
+      }
+    }
+    .row.widget-line.header > [class*='col-'] { position: static; }
+
+    &.no-scroll {
+      overflow: visible;
+    }
+  }
+
+  .no-data-block {
+    .center-thin();
+    margin: 15px 0px;
   }
 }
 
@@ -3176,29 +3199,6 @@ chart-threshold {
     display: inline-block;
     float: right;
     font-size: 12px;
-  }
-}
-
-.analytics .widget-item .content.accounts-balance-sheet {
-  .tall-widget();
-  .widget-lines-container {
-    .scrollable(scroll);
-    max-height: 490px;
-    @media (max-width: @screen-xs-max) {
-      .row.widget-line {
-        &:not(:last-child) { border-bottom: dashed 1px @impac-widget-borders-color; }
-      }
-    }
-    .row.widget-line.header > [class*='col-'] { position: static; }
-
-    &.no-scroll {
-      overflow: visible;
-    }
-  }
-
-  .no-data-block {
-    .center-thin();
-    margin: 15px 0px;
   }
 }
 
@@ -4320,66 +4320,6 @@ chart-threshold {
     }
   }
 }
-.analytics .widget-item .content .settings.param-selector {
-  display: inline-block;
-
-  &.classic {
-    width: 100%;
-
-    select {
-      width: 100%;
-      height: 25px;
-      border: 1px solid #ccc;
-      text-transform: uppercase;
-      margin: 0px 0px 5px 0px;
-    }
-  }
-
-  a {
-    font-weight: normal;
-    color: @impac-widget-param-selector-color;
-    white-space: nowrap;
-  }
-  .options-container {
-    position: absolute;
-    background-color: white;
-    text-align: left;
-    min-width: 150px;
-    max-height: 200px;
-    z-index: 999;
-    overflow-y: auto;
-    overflow-x: hidden;
-    .box-shadow(rgb(0, 0, 0) 0px 3px 15px -3px);
-
-    .param-selector-label {
-      padding: 3px 5px;
-      .font(inherit,500,black);
-      cursor: text;
-      overflow: hidden;
-      white-space: nowrap;
-      text-overflow: ellipsis;
-      line-height: 1.9;
-    }
-    .param-selector-label:hover {
-      cursor: pointer;
-      background-color: @impac-widget-param-selector-color;
-      color: white;
-    }
-
-    &::-webkit-scrollbar {
-      width: 8px;
-      background-color: darken(@lightgray,5%);
-    }
-
-    &::-webkit-scrollbar-thumb {
-      background-color: @impac-widget-param-selector-color;
-      &:hover {
-        background-color: lighten(@impac-widget-param-selector-color,5%);
-      }
-    }
-  }
-}
-
 .analytics .settings.params-checkboxes {
   padding: 2px 0px;
   input {
@@ -4488,6 +4428,66 @@ chart-threshold {
     }
 
     .sub-setting { padding: 5px; }
+  }
+}
+
+.analytics .widget-item .content .settings.param-selector {
+  display: inline-block;
+
+  &.classic {
+    width: 100%;
+
+    select {
+      width: 100%;
+      height: 25px;
+      border: 1px solid #ccc;
+      text-transform: uppercase;
+      margin: 0px 0px 5px 0px;
+    }
+  }
+
+  a {
+    font-weight: normal;
+    color: @impac-widget-param-selector-color;
+    white-space: nowrap;
+  }
+  .options-container {
+    position: absolute;
+    background-color: white;
+    text-align: left;
+    min-width: 150px;
+    max-height: 200px;
+    z-index: 999;
+    overflow-y: auto;
+    overflow-x: hidden;
+    .box-shadow(rgb(0, 0, 0) 0px 3px 15px -3px);
+
+    .param-selector-label {
+      padding: 3px 5px;
+      .font(inherit,500,black);
+      cursor: text;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      line-height: 1.9;
+    }
+    .param-selector-label:hover {
+      cursor: pointer;
+      background-color: @impac-widget-param-selector-color;
+      color: white;
+    }
+
+    &::-webkit-scrollbar {
+      width: 8px;
+      background-color: darken(@lightgray,5%);
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: @impac-widget-param-selector-color;
+      &:hover {
+        background-color: lighten(@impac-widget-param-selector-color,5%);
+      }
+    }
   }
 }
 
