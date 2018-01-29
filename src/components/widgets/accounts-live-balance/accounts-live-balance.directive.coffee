@@ -61,7 +61,7 @@ module.controller('WidgetAccountsLiveBalanceCtrl', ($scope, $q, ChartFormatterSv
     ) if w.content?
     _.find(statement.table_rows, (row) ->
       row.column_2 == "Closing Balance"
-    ) if statement
+    ) if w.content?
 
   $scope.displayAccount = ->
     $scope.updateSettings(false).then ->
