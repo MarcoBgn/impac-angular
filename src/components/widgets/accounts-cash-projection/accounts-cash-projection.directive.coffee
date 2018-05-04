@@ -61,6 +61,7 @@ module.controller('WidgetAccountsCashProjectionCtrl', ($scope, $q, $filter, $tim
       $scope.trxList.params, {
         metadata: _.pick(w.metadata, 'organization_ids')
         page: { number: currentPage }
+        sort: '-expected_payment_date'
         currency: w.metadata.currency
       }
     )
@@ -82,7 +83,7 @@ module.controller('WidgetAccountsCashProjectionCtrl', ($scope, $q, $filter, $tim
 
   # Fetch and show all invoices or bills
   $scope.trxList.showAll = (resources = 'invoices') ->
-    appUid = $scope.widget.metadata.app_instance_id.pop() if $scope.widget.metadata.app_instance_id
+    appUid = $scope.widget.metadata.app_instance_id[0] if $scope.widget.metadata.app_instance_id
     filter = { status: ['AUTHORISED', 'APPROVED', 'SUBMITTED', 'FORECAST'], app_instance_id: appUid }
     $scope.trxList.updateParams(resources, filter)
     $scope.trxList.fetch()
@@ -157,6 +158,7 @@ module.controller('WidgetAccountsCashProjectionCtrl', ($scope, $q, $filter, $tim
     filter =
       expected_payment_date: dateFilter(event.point.x)
       status: ['AUTHORISED', 'APPROVED', 'SUBMITTED', 'FORECAST']
+      app_instance_id: w.metadata.app_instance_id[0] if w.metadata.app_instance_id
     $scope.trxList.updateParams(resources, filter)
     $scope.trxList.fetch()
 
